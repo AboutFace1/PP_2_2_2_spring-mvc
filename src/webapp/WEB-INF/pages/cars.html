@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            margin-left: 200px;
+            margin-top: auto;
+            width: 100%;
+            height: 60px;
+        }
+
+        .someTable {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+<div style="width: 100%">
+    <table class="someTable" border="1">
+    <tr>
+        <th>Number</th>
+        <th>Model</th>
+        <th>Number of wheels</th>
+        <th>Modern car</th>
+    </tr>
+    <tr th:each="car, state : ${carList}"
+        class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+        <td style="text-align: center" th:utext="${state.count}">Number</td>
+        <td style="text-align: center" th:utext="${car.model}">Model</td>
+        <td style="text-align: center" th:utext="${car.numberOfWheels}">Number of wheels</td>
+        <td style="text-align: center" th:utext="${car.isNew()}">Modern car</td>
+    </tr>
+    </table>
+</div>
+</body>
+</html>
