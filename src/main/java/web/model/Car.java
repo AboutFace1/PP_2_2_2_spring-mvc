@@ -1,4 +1,4 @@
-package web.Dao;
+package web.model;
 
 public class Car {
 
