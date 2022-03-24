@@ -1,6 +1,6 @@
 package web.repository;
 
-import web.model.Car;
+import web.Dao.Car;
 
 import java.util.List;
 
