@@ -10,18 +10,9 @@ import web.service.CarService;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class CarController {
-
-    List<Car> cars = Stream.of(
-            new Car("T-34", (byte)14, false),
-            new Car("Toyota", (byte)4, true),
-            new Car("BMW", (byte)4, true),
-            new Car("Honda", (byte)2, true),
-            new Car("FordT", (byte)4, false)).collect(Collectors.toList()
-    );
 
     private CarService carService;
 
@@ -33,13 +24,13 @@ public class CarController {
     @GetMapping("/cars")
     public ModelAndView count(@RequestParam(value = "count", required = false) Long count) {
         if (count == null) {
-            count = (long) cars.size();
+            count = (long) carService.getNumberOfCars();
         }
 
-        List<Car> carList = cars.stream().limit(count).toList();
+        List<Car> carList = carService.getAll().stream().limit(count).collect(Collectors.toList());
 
         ModelAndView modelAndView = new ModelAndView("cars");
-        modelAndView.addObject("carList", carList);
+        modelAndView.addObject("carList",  carList);
 
         return modelAndView;
     }
